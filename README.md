@@ -1,4 +1,3 @@
-```markdown
 # 🎬 Wolflix
 
 > Sistema de recomendação de filmes em **.NET 8** com foco em **padrões de projeto (Strategy + Factory)**, **DDD** e **testes automatizados**.
@@ -77,8 +76,5 @@ Desenvolvedor Back-end | C# | .NET | Clean Code | DDD
 git add .
 git commit -m "🧱 Estrutura inicial com README e .gitignore"
 git push
-````
-
----
 
 
