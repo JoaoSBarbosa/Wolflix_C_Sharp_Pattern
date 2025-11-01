@@ -1,0 +1,18 @@
+# Build
+bin/
+obj/
+
+# User-specific files
+.vs/
+.vscode/
+*.user
+*.suo
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+*.snupkg
