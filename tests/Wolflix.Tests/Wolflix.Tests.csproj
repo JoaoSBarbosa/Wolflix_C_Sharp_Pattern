@@ -22,8 +22,4 @@
     <ProjectReference Include="..\..\src\Wolflix.Domain\Wolflix.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Domain\Entity\" />
-  </ItemGroup>
-
 </Project>
