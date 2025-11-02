@@ -12,11 +12,14 @@ namespace Wolflix.Domain.Entities
         public Guid Id { get; private set; }
         public string Name { get; private set; }
         public string Email { get; private set; }
-        public User(string name, string email) { 
+        public string FavoriteGenre { get; private set; }
+        public User(string name, string email, string favoriteGenre) { 
         
             Id = Guid.NewGuid();
             Name = name;
             Email = email;
+            FavoriteGenre = favoriteGenre;
+            
             valid();
         }
 
@@ -24,6 +27,8 @@ namespace Wolflix.Domain.Entities
         {
             if (String.IsNullOrWhiteSpace(Name)) throw new EntityValidRequest("O Nome é obrigatório");
             if (String.IsNullOrWhiteSpace(Email)) throw new EntityValidRequest("O E-mail é obrigatório");
+            if (string.IsNullOrWhiteSpace(FavoriteGenre))
+                throw new EntityValidRequest("O gênero favorito é obrigatório.");
         }
     }
 }

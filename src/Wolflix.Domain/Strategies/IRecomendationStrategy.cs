@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Wolflix.Domain.Entities;
 
 namespace Wolflix.Domain.Strategies
 {
     public interface IRecomendationStrategy
     {
-     
+
+        List<Movie> Recommend(User user, List<Movie> allMovies);
+
+
     }
 }

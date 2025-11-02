@@ -18,9 +18,11 @@ namespace Wolflix.Tests.Domain.Entity
             var initialData = new
             {
                 Name = "João",
-                Email = "contato@joao.com"
+                Email = "contato@joao.com",
+                FavoriteGenrer = "Terror"
+
             };
-            var user = new User(initialData.Name, initialData.Email);
+            var user = new User(initialData.Name, initialData.Email, initialData.FavoriteGenrer);
 
             Assert.NotNull(user);
             Assert.Equal(initialData.Name, user.Name);
@@ -34,10 +36,11 @@ namespace Wolflix.Tests.Domain.Entity
             var initialData = new
             {
                 Name = "Lucas",
-                Email = "contato@lucas.com"
+                Email = "contato@lucas.com",
+                FavoriteGenrer = "Terror"
             };
 
-            var user = new User(initialData.Name, initialData.Email);
+            var user = new User(initialData.Name, initialData.Email, initialData.FavoriteGenrer);
             Assert.NotEqual(default(Guid), user.Id);
         }
 
@@ -49,10 +52,10 @@ namespace Wolflix.Tests.Domain.Entity
         public void ShouldThrowExceptionWhenTryingSaveUserWithEmptyName(string? name)
         {
 
-     
             var email = "teste@teste";
+            var favoriteGenre = "Terror";
 
-            Action action = () => new User(name, email);
+            Action action = () => new User(name, email, favoriteGenre);
             var exception = Assert.Throws<EntityValidRequest>(action);
             Assert.Equal("O Nome é obrigatório", exception.Message);
 
@@ -66,9 +69,28 @@ namespace Wolflix.Tests.Domain.Entity
         public void ShouldThrowExceptionWhentryingSaveUserWithEmptyEmail(string? email)
         {
             var name = "Jonas";
-            Action action = () => new User(name, email);
+            var favoriteGenre = "Terror";
+
+            Action action = () => new User(name, email!, favoriteGenre);
             var exception = Assert.Throws<EntityValidRequest>(action);
             Assert.Equal("O E-mail é obrigatório", exception.Message);
+        }
+
+        [Theory(DisplayName = nameof(ShouldThrowExceptionWhenTryingSaveUserWithEmptyFavoriteGenrer))]
+        [Trait("User", "Aggregation")]
+        [InlineData("")]
+        [InlineData("  ")]
+        [InlineData(null)]
+        public void ShouldThrowExceptionWhenTryingSaveUserWithEmptyFavoriteGenrer(string? favoriteGenre)
+        {
+
+            var email = "teste@teste";
+            var name = "Lucas";
+
+            Action action = () => new User(name, email, favoriteGenre!);
+            var exception = Assert.Throws<EntityValidRequest>(action);
+            Assert.Equal("O gênero favorito é obrigatório.", exception.Message);
+
         }
     }
 }
